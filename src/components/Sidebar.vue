@@ -4,8 +4,8 @@
       <img v-bind:src="'img/pokemon.png'" />
     </div>
     <a-menu theme="dark" mode="inline" :selectedKeys="[selectedKey]">
-      <a-menu-item key="/" @click="setActive">
-        <router-link to="/">
+      <a-menu-item key="/pokemons" @click="setActive">
+        <router-link to="/pokemons">
           <span class="nav">
             <a-icon type="user" />
             <span class="nav-text">Pokemons</span>
@@ -28,7 +28,7 @@
 export default {
   data() {
     return {
-      selectedKey: "/about"
+      selectedKey: "/pokemons"
     };
   },
   methods: {
