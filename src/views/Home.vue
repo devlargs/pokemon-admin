@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>home</h1>
+    <h1>Pokemon</h1>
   </div>
 </template>
 
@@ -8,9 +8,6 @@
 import api from "@/utils/api";
 export default {
   created() {
-    console.log("created");
-    // api.getPokemonList();
-    // console.log(api.getPokemonList);
     api.getPokemonsList();
   }
 };

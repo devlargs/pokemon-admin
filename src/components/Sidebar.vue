@@ -3,17 +3,21 @@
     <div class="logo">
       <img v-bind:src="'img/pokemon.png'" />
     </div>
-    <a-menu theme="dark" mode="inline" :defaultSelectedKeys="['1']">
-      <a-menu-item key="1">
+    <a-menu theme="dark" mode="inline" :selectedKeys="[selectedKey]">
+      <a-menu-item key="/" @click="setActive">
         <router-link to="/">
-          <a-icon type="user" />
-          <span class="nav-text">Pokemon</span>
+          <span class="nav">
+            <a-icon type="user" />
+            <span class="nav-text">Pokemons</span>
+          </span>
         </router-link>
       </a-menu-item>
-      <a-menu-item key="2">
-        <router-link to="/about">
-          <a-icon type="user" />
-          <span class="nav-text">About</span>
+      <a-menu-item key="/berries" @click="setActive">
+        <router-link to="/berries">
+          <span class="nav">
+            <a-icon type="user" />
+            <span class="nav-text">Berries</span>
+          </span>
         </router-link>
       </a-menu-item>
     </a-menu>
@@ -21,19 +25,37 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      selectedKey: "/about"
+    };
+  },
+  methods: {
+    setActive({ key }) {
+      this.selectedKey = key;
+    }
+  },
+  mounted() {
+    this.selectedKey = location.pathname;
+  }
+};
 </script>
 
 <style scoped lang="scss">
 .sidebar {
   height: 100vh;
+  .nav {
+    color: white;
+    font-weight: bold;
+  }
   .logo {
     padding: 20px;
     margin-top: 10px;
     text-align: center;
     img {
       width: 150px;
-      height: 80px;
+      height: 70px;
     }
   }
 }
