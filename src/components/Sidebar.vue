@@ -1,7 +1,7 @@
 <template>
   <a-layout-sider class="sidebar" breakpoint="lg" collapsedWidth="0">
     <div class="logo">
-      <img v-bind:src="'img/pokemon.png'" />
+      <img v-bind:src="`${logo}pokemon.png`" />
     </div>
     <a-menu theme="dark" mode="inline" :selectedKeys="[selectedKey]">
       <a-menu-item key="/pokemons" @click="setActive">
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import config from "@/utils/config";
+
 export default {
   data() {
     return {
@@ -35,6 +37,9 @@ export default {
     setActive({ key }) {
       this.selectedKey = key;
     }
+  },
+  created() {
+    this.logo = config.s3ImgUrl;
   },
   mounted() {
     this.selectedKey = location.pathname;
