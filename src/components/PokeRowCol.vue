@@ -10,20 +10,22 @@
       :xs="24"
       :key="idx"
     >
-      <a-card hoverable class="card">
-        <img
-          :alt="data.url"
-          slot="cover"
-          height="150"
-          :src="data.image"
-          @error="getAlternateImg"
-        />
-        <a-card-meta
-          class="card-meta"
-          :title="data.name | capitalize"
-          :style="{ textAlign: 'center' }"
-        ></a-card-meta>
-      </a-card>
+      <router-link :to="`/${link}/${data.id}`">
+        <a-card hoverable class="card">
+          <img
+            :alt="data.url"
+            slot="cover"
+            height="150"
+            :src="data.image"
+            @error="getAlternateImg"
+          />
+          <a-card-meta
+            class="card-meta"
+            :title="data.name | capitalize"
+            :style="{ textAlign: 'center' }"
+          ></a-card-meta>
+        </a-card>
+      </router-link>
     </a-col>
   </a-row>
 </template>
@@ -32,7 +34,7 @@
 import config from "@/utils/config";
 
 export default {
-  props: ["dataSource"],
+  props: ["dataSource", "link"],
   data() {
     return {
       rowPush: 0

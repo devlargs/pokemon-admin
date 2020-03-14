@@ -7,7 +7,7 @@
       v-on:scroll="onScroll"
     >
       <a-spin :spinning="loading" v-show="pokemons.length">
-        <PokeRowCol :dataSource="pokemons" />
+        <PokeRowCol :dataSource="pokemons" link="pokemon" />
       </a-spin>
       <a-spin :spinning="loading"></a-spin>
     </div>
@@ -42,7 +42,8 @@ export default {
         );
         if (status) {
           const list = data.results.map(q => {
-            let idx = `${compact(q.url.split("/")).pop()}`;
+            const id = `${compact(q.url.split("/")).pop()}`;
+            let idx = `${id}`;
             if (idx.length === 1) {
               idx = `00${idx}`;
             } else if (idx.length === 2) {
@@ -50,6 +51,7 @@ export default {
             }
             return {
               ...q,
+              id,
               image: `${config.imgUrl}${idx}.png`
             };
           });
