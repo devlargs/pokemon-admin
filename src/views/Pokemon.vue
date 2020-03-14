@@ -1,26 +1,27 @@
 <template>
   <div :style="{ padding: '24px', background: '#fff' }">
-    <h1>
-      Pokemons List
-      <span class="subtitle"
-        >(showing {{ pokemons.length }} of {{ count }})</span
-      >
-    </h1>
+    <h1>Pokemons</h1>
     <div
       class="pokemon-container"
       id="pokemon-container"
       v-on:scroll="onScroll"
     >
       <a-spin :spinning="loading" v-show="pokemons.length">
-        <a-row :gutter="16">
+        <a-row>
           <a-col
+            :push="rowPush"
+            :style="{ justifyItems: 'center', display: 'flex' }"
             class="pokemon-card"
             v-for="(pokemon, idx) in pokemons"
-            :span="6"
+            :xxl="4"
+            :lg="6"
+            :md="8"
+            :sm="12"
+            :xs="24"
             :key="idx"
           >
             <div class="gutter-box">
-              <a-card hoverable style="width: 240px">
+              <a-card hoverable style="width: 200px;">
                 <img
                   :alt="pokemon.url"
                   slot="cover"
@@ -31,8 +32,7 @@
                 <a-card-meta
                   :title="pokemon.name | capitalize"
                   :style="{ textAlign: 'center' }"
-                >
-                </a-card-meta>
+                ></a-card-meta>
               </a-card>
             </div>
           </a-col>
@@ -54,6 +54,7 @@ export default {
       limit: 49,
       loading: true,
       offset: 1,
+      rowPush: 0,
       pokemons: [],
       count: 0
     };
@@ -103,9 +104,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.subtitle {
-  float: right;
-}
 .pokemon-container {
   height: calc(100vh - 200px);
   overflow: auto;
