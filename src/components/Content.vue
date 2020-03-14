@@ -1,6 +1,6 @@
 <template>
-  <div :style="{ padding: '24px', background: '#fff' }">
-    <h1>Pokemons</h1>
+  <div class="parent">
+    <h1>{{ title }}</h1>
     <div class="pokemon-container" id="pokemon-container" v-on:scroll="scroll">
       <slot />
     </div>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  props: ["onScroll"],
+  props: ["onScroll", "title"],
   methods: {
     scroll() {
       const element = document.getElementById("pokemon-container");
@@ -22,6 +22,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.parent {
+  padding: 24px;
+  background: #fff;
+}
 .pokemon-container {
   height: calc(100vh - 200px);
   overflow: auto;

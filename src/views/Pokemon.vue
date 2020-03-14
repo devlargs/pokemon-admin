@@ -1,5 +1,5 @@
 <template>
-  <Content :onScroll="fetch">
+  <Content :onScroll="fetch" title="Pokemons">
     <a-spin :spinning="loading" v-show="pokemons.length">
       <PokeRowCol :dataSource="pokemons" link="pokemon" />
     </a-spin>
