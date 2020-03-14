@@ -7,13 +7,15 @@ import router from "@/router";
 import store from "@/store";
 
 // components
-import Sidebar from "@/components/Sidebar.vue";
+import Content from "@/components/Content.vue";
 import Footer from "@/components/Footer.vue";
 import PokeRowCol from "@/components/PokeRowCol.vue";
+import Sidebar from "@/components/Sidebar.vue";
 
-Vue.component("Sidebar", Sidebar);
+Vue.component("Content", Content);
 Vue.component("Footer", Footer);
 Vue.component("PokeRowCol", PokeRowCol);
+Vue.component("Sidebar", Sidebar);
 
 Vue.use(Antd);
 
