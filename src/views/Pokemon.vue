@@ -7,36 +7,7 @@
       v-on:scroll="onScroll"
     >
       <a-spin :spinning="loading" v-show="pokemons.length">
-        <a-row>
-          <a-col
-            :push="rowPush"
-            :style="{ justifyItems: 'center', display: 'flex' }"
-            class="pokemon-card"
-            v-for="(pokemon, idx) in pokemons"
-            :xxl="4"
-            :lg="6"
-            :md="8"
-            :sm="12"
-            :xs="24"
-            :key="idx"
-          >
-            <div class="gutter-box">
-              <a-card hoverable style="width: 200px;">
-                <img
-                  :alt="pokemon.url"
-                  slot="cover"
-                  height="150"
-                  :src="pokemon.image"
-                  @error="getAlternateImg"
-                />
-                <a-card-meta
-                  :title="pokemon.name | capitalize"
-                  :style="{ textAlign: 'center' }"
-                ></a-card-meta>
-              </a-card>
-            </div>
-          </a-col>
-        </a-row>
+        <PokeRowCol :dataSource="pokemons" />
       </a-spin>
       <a-spin :spinning="loading"></a-spin>
     </div>
@@ -54,7 +25,6 @@ export default {
       limit: 49,
       loading: true,
       offset: 1,
-      rowPush: 0,
       pokemons: [],
       count: 0
     };
@@ -90,9 +60,6 @@ export default {
         }
       }, 2000);
     },
-    getAlternateImg(e) {
-      e.target.src = config.defaultPokemonImg;
-    },
     onScroll() {
       const element = document.getElementById("pokemon-container");
       if (element.scrollHeight - element.scrollTop === element.clientHeight) {
@@ -110,10 +77,6 @@ export default {
   text-align: center;
   overflow-x: hidden;
   z-index: 9999;
-
-  .pokemon-card {
-    margin-bottom: 20px;
-  }
 }
 
 .pokemon-container::-webkit-scrollbar-track {
@@ -124,7 +87,7 @@ export default {
 }
 
 .pokemon-container::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
   background-color: #f5f5f5;
 }
 

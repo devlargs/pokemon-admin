@@ -9,9 +9,11 @@ import store from "@/store";
 // components
 import Sidebar from "@/components/Sidebar.vue";
 import Footer from "@/components/Footer.vue";
+import PokeRowCol from "@/components/PokeRowCol.vue";
 
 Vue.component("Sidebar", Sidebar);
 Vue.component("Footer", Footer);
+Vue.component("PokeRowCol", PokeRowCol);
 
 Vue.use(Antd);
 
