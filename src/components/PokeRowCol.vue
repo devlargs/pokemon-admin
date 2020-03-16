@@ -15,7 +15,7 @@
           <img
             :alt="data.url"
             slot="cover"
-            height="150"
+            height="200"
             :src="data.image"
             @error="getAlternateImg"
           />

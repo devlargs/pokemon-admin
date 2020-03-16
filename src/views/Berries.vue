@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h1>Berries</h1>
-  </div>
+  <Content title="Berries"></Content>
 </template>
 
 <script>

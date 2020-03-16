@@ -22,6 +22,25 @@ const getPokemonsList = async (limit, offset) => {
   }
 };
 
+const getPokemonDetail = id => {
+  return new Promise(resolve => {
+    P.getPokemonByName(id, function(result, error) {
+      if (!error) {
+        resolve({
+          result,
+          status: true
+        });
+      } else {
+        resolve({
+          error,
+          status: false
+        });
+      }
+    });
+  });
+};
+
 export default {
+  getPokemonDetail,
   getPokemonsList
 };
