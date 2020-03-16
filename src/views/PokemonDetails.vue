@@ -2,7 +2,9 @@
   <Content title="Bulbasaur #001">
     <div :style="{ textAlign: 'left' }">
       <a-breadcrumb>
-        <a-breadcrumb-item>Pokemons</a-breadcrumb-item>
+        <router-link to="/pokemons"
+          ><a-breadcrumb-item>Pokemons</a-breadcrumb-item></router-link
+        >
         <a-breadcrumb-item><a href="">Bulbasaur</a></a-breadcrumb-item>
       </a-breadcrumb>
     </div>
@@ -10,6 +12,7 @@
     <a-row :gutter="16" style="margin-top: 50px">
       <a-col :span="12" style="text-align: center;">
         <Pokeball
+          :id="pokemon.id"
           image="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png"
         />
       </a-col>
@@ -18,17 +21,13 @@
           <a-tab-pane tab="Profile" key="1">
             <Types v-show="pokemon.types.length" :type="pokemon.types" />
             <div class="pokemon-profile">
-              <div
+              <Statistics
                 v-for="(stats, key) in pokemon.stats"
                 v-bind:key="key"
-                v-show="pokemon.stats.length"
-              >
-                <Statistics
-                  v-show="stats.stat.name !== 'attack'"
-                  :label="stats.stat.name"
-                  :percent="stats.base_stat"
-                />
-              </div>
+                v-show="pokemon.stats.length && stats.stat.name !== 'attack'"
+                :label="stats.stat.name"
+                :percent="stats.base_stat"
+              />
             </div>
           </a-tab-pane>
           <a-tab-pane tab="Moves" key="2" forceRender

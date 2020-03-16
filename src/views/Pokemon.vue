@@ -10,6 +10,7 @@
 <script>
 import api from "@/utils/api";
 import config from "@/utils/config";
+import helpers from "@/utils/helpers";
 import { compact, uniqBy } from "lodash";
 
 export default {
@@ -36,16 +37,10 @@ export default {
         if (status) {
           const list = data.results.map(q => {
             const id = `${compact(q.url.split("/")).pop()}`;
-            let idx = `${id}`;
-            if (idx.length === 1) {
-              idx = `00${idx}`;
-            } else if (idx.length === 2) {
-              idx = `0${idx}`;
-            }
             return {
               ...q,
               id,
-              image: `${config.imgUrl}${idx}.png`
+              image: `${config.imgUrl}${helpers.getStringifiedInt(id)}.png`
             };
           });
           this.pokemons = uniqBy([...this.pokemons, ...list], "name");

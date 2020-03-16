@@ -1,12 +1,26 @@
 <template>
   <div style="position: relative;">
-    <img height="250" width="250" class="pokeball" alt="example" :src="image" />
+    <img
+      height="250"
+      width="250"
+      class="pokeball"
+      alt="example"
+      :src="getUrl"
+    />
   </div>
 </template>
 
 <script>
+import config from "@/utils/config";
+import helpers from "@/utils/helpers";
+
 export default {
-  props: ["image"]
+  props: ["id"],
+  computed: {
+    getUrl: function() {
+      return `${config.imgUrl}${helpers.getStringifiedInt(this.$props.id)}.png`;
+    }
+  }
 };
 </script>
 
