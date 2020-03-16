@@ -18,3 +18,15 @@
   }
 }
 </style>
+
+<style>
+.pokemon-profile {
+  background: moccasin;
+  color: black;
+  margin-top: 10px;
+  margin-left: 5px;
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 10px;
+}
+</style>

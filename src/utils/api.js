@@ -40,7 +40,26 @@ const getPokemonDetail = id => {
   });
 };
 
+const getTypesList = () => {
+  /* eslint-disable no-async-promise-executor */
+  return new Promise(async resolve => {
+    try {
+      const { results } = await P.getTypesList();
+      resolve({
+        status: true,
+        results
+      });
+    } catch (error) {
+      resolve({
+        status: false,
+        error
+      });
+    }
+  });
+};
+
 export default {
   getPokemonDetail,
-  getPokemonsList
+  getPokemonsList,
+  getTypesList
 };

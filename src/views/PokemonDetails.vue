@@ -7,25 +7,37 @@
       </a-breadcrumb>
     </div>
 
-    <div style="position: relative;">
-      <img
-        height="250"
-        width="250"
-        class="pokeball"
-        alt="example"
-        src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png"
-      />
-    </div>
-
-    <div :style="{ textAlign: 'left' }">
-      <a-tabs defaultActiveKey="1">
-        <a-tab-pane tab="Tab 1" key="1">Content of Tab Pane 1</a-tab-pane>
-        <a-tab-pane tab="Tab 2" key="2" forceRender
-          >Content of Tab Pane 2</a-tab-pane
-        >
-        <a-tab-pane tab="Tab 3" key="3">Content of Tab Pane 3</a-tab-pane>
-      </a-tabs>
-    </div>
+    <a-row :gutter="16" style="margin-top: 50px">
+      <a-col :span="12" style="text-align: center;">
+        <Pokeball
+          image="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png"
+        />
+      </a-col>
+      <a-col :span="12" style="text-align: left">
+        <a-tabs defaultActiveKey="1">
+          <a-tab-pane tab="Profile" key="1">
+            <Types v-show="pokemon.types.length" :type="pokemon.types" />
+            <div class="pokemon-profile">
+              <div
+                v-for="(stats, key) in pokemon.stats"
+                v-bind:key="key"
+                v-show="pokemon.stats.length"
+              >
+                <Statistics
+                  v-show="stats.stat.name !== 'attack'"
+                  :label="stats.stat.name"
+                  :percent="stats.base_stat"
+                />
+              </div>
+            </div>
+          </a-tab-pane>
+          <a-tab-pane tab="Moves" key="2" forceRender
+            >Content of Tab Pane 2</a-tab-pane
+          >
+          <a-tab-pane tab="Abilities" key="3">Content of Tab Pane 3</a-tab-pane>
+        </a-tabs>
+      </a-col>
+    </a-row>
   </Content>
 </template>
 
@@ -34,14 +46,17 @@ import api from "@/utils/api";
 export default {
   data() {
     return {
-      pokemon: {},
+      pokemon: {
+        types: []
+      },
       loading: false
     };
   },
-  created() {
+  async created() {
     this.fetch();
   },
   methods: {
+    format: e => e,
     async fetch() {
       this.loading = true;
       const { status, result, error } = await api.getPokemonDetail(
@@ -57,13 +72,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-.pokeball {
-  background: -webkit-linear-gradient(90deg, #fff 50%, rgba(0, 0, 0, 0) 44%),
-    -webkit-linear-gradient(90deg, black 55%, red 55%);
-  text-align: center !important;
-  border-radius: 50%;
-  border: 10px solid black;
-}
-</style>
