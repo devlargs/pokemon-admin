@@ -5,6 +5,11 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: "/",
+    name: "Pokemon",
+    component: () => import("@/views/Pokemon.vue")
+  },
+  {
     path: "/pokemons",
     name: "Pokemon",
     component: () => import("@/views/Pokemon.vue")
